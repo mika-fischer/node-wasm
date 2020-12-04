@@ -39,6 +39,13 @@ pub fn return_array_buffer() -> Uint8Array {
 }
 
 #[wasm_bindgen]
+pub fn return_boxed_u8_slice() -> Box<[u8]> {
+    String::from("Greetings from rust/wasm via slice!")
+        .as_bytes()
+        .into()
+}
+
+#[wasm_bindgen]
 pub fn panic() {
     panic!("WASM Panic!!!");
 }
