@@ -1,4 +1,4 @@
-const { greet, return_array_buffer, take_array_buffer } = require('./pkg');
+const { greet, panic, return_array_buffer, take_array_buffer } = require('./pkg');
 
 greet();
 
@@ -9,4 +9,15 @@ console.log(`Got Uint8Array from WASM:    length   = ${buf.length}`);
 console.log(`                             contents = "${buf.toString()}"`);
 
 console.log('Sending invalid UTF-8');
-take_array_buffer(Buffer.alloc(42, 255));
+try {
+    take_array_buffer(Buffer.alloc(42, 255));
+} catch (err) {
+    console.error('Caught error:', err);
+}
+
+console.log('Causing rust panic!');
+try {
+    panic();
+} catch (err) {
+    console.error('Caught error:', err);
+}
