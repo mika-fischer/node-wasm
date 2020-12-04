@@ -13,7 +13,7 @@ $ wasm-pack build --dev --target nodejs && node index.js
     Finished dev [unoptimized + debuginfo] target(s) in 0.03s
 [INFO]: Installing wasm-bindgen...
 [INFO]: Optional fields missing from Cargo.toml: 'description', 'repository', and 'license'. These are not necessary, but recommended
-[INFO]: :-) Done in 0.37s
+[INFO]: :-) Done in 0.38s
 [INFO]: :-) Your wasm pkg is ready to publish at C:\Users\mfischer\src\rust\node-wasm\pkg.
 Hello, node-wasm!
 Got u8 slice from Node.js:   length   = 23
@@ -21,14 +21,18 @@ Got u8 slice from Node.js:   length   = 23
 Got u8 slice from WASM:      length   = 25
                              contents = "Greetings from rust/wasm!"
 Sending invalid UTF-8
-Caught error: ReferenceError: take_array_buffer is not defined
+Got u8 slice from Node.js:   length   = 42
+Caught error: Error: Failure parsing UTF-8
+    at module.exports.__wbindgen_throw (C:\Users\mfischer\src\rust\node-wasm\pkg\node_wasm.js:214:11)
+    at wasm_bindgen::throw_str::h3c12a144668bbbe0 (wasm-function[349]:0x126fe)
+    at <core::result::Result<T,E> as wasm_bindgen::UnwrapThrowExt<T>>::expect_throw::h6c4edd957955ae1e (wasm-function[103]:0xc02c)
+    at node_wasm::take_u8_slice::h1e53caad02764231 (wasm-function[24]:0x5b6e)
+    at take_u8_slice (wasm-function[127]:0xd101)
+    at module.exports.take_u8_slice (C:\Users\mfischer\src\rust\node-wasm\pkg\node_wasm.js:80:10)
     at Object.<anonymous> (C:\Users\mfischer\src\rust\node-wasm\index.js:13:5)
     at Module._compile (internal/modules/cjs/loader.js:1133:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
     at Module.load (internal/modules/cjs/loader.js:977:32)
-    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
-    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:74:12)
-    at internal/main/run_main_module.js:18:47
 Causing rust panic!
 panicked at 'WASM Panic!!!', src\lib.rs:34:5
 

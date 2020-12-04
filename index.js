@@ -10,7 +10,7 @@ console.log(`                             contents = "${buf.toString()}"`);
 
 console.log('Sending invalid UTF-8');
 try {
-    take_array_buffer(Buffer.alloc(42, 255));
+    take_u8_slice(Buffer.alloc(42, 255));
 } catch (err) {
     console.error('Caught error:', err);
 }
