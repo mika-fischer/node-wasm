@@ -1,4 +1,3 @@
-use js_sys::Uint8Array;
 use std::panic;
 use wasm_bindgen::prelude::*;
 
@@ -19,14 +18,6 @@ pub fn greet() {
 }
 
 #[wasm_bindgen]
-pub fn take_array_buffer(buf: Uint8Array) {
-    console_log!("Got Uint8Array from Node.js: length   = {}", buf.length());
-    // It is a bit unfortunate that we are forced to copy the data here...
-    let s = String::from_utf8(buf.to_vec()).expect_throw("Failure parsing UTF-8");
-    console_log!("                             contents = \"{}\"", &s);
-}
-
-#[wasm_bindgen]
 pub fn take_u8_slice(data: &[u8]) {
     console_log!("Got u8 slice from Node.js:   length   = {}", data.len());
     let s = std::str::from_utf8(data).expect_throw("Failure parsing UTF-8");
@@ -34,15 +25,8 @@ pub fn take_u8_slice(data: &[u8]) {
 }
 
 #[wasm_bindgen]
-pub fn return_array_buffer() -> Uint8Array {
-    String::from("Greetings from rust/wasm!").as_bytes().into()
-}
-
-#[wasm_bindgen]
 pub fn return_boxed_u8_slice() -> Box<[u8]> {
-    String::from("Greetings from rust/wasm via slice!")
-        .as_bytes()
-        .into()
+    String::from("Greetings from rust/wasm!").as_bytes().into()
 }
 
 #[wasm_bindgen]
